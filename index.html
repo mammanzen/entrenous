@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Entre Nous</title>
+<meta name="description" content="Entre Nous, l'entraide de la Sisterhood MAM·MAN·ZEN. D'une femme à l'autre.">
+<meta name="theme-color" content="#F3D5CF">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Entre Nous">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500&family=Tinos:ital@0;1&display=swap" rel="stylesheet">
+<style>
+html,body{margin:0;height:100%;background:#F3D5CF}
+body{padding-top:env(safe-area-inset-top);box-sizing:border-box}
+#app{border:0;width:100%;height:100%;display:block;background:#F3D5CF}
+#attente{position:fixed;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;font-family:Tinos,'Times New Roman',serif;color:#6A443F;background:#F3D5CF;transition:opacity .4s}
+#attente small{font-family:Poppins,Arial,sans-serif;letter-spacing:3px;font-size:11px}
+#attente b{font-weight:400;font-size:34px;color:#3E362E}
+#attente i{font-size:34px}
+#secours{display:none;margin-top:18px;font-family:Poppins,Arial,sans-serif;font-size:14px;color:#6A443F}
+</style>
+</head>
+<body>
+<div id="attente"><small>MAM·MAN·ZEN</small><div><b>Entre</b> <i>Nous</i></div><a id="secours" href="https://script.google.com/macros/s/AKfycbwKAVyImTHpVo3mJDXCR4ndSghsGLcN5v6_S4MK8x9Y_7ueCG6sAqYvw_3ZAxNRHz1h/exec">Ouvrir l'appli</a></div>
+<iframe id="app" title="Entre Nous" src="https://script.google.com/macros/s/AKfycbwKAVyImTHpVo3mJDXCR4ndSghsGLcN5v6_S4MK8x9Y_7ueCG6sAqYvw_3ZAxNRHz1h/exec"></iframe>
+<script>
+function icone(taille) {
+  var c = document.createElement('canvas'); c.width = c.height = taille;
+  var x = c.getContext('2d'), k = taille / 1024;
+  var g = x.createLinearGradient(0, 0, taille * 0.35, taille);
+  g.addColorStop(0, '#F6E2DD'); g.addColorStop(0.55, '#E2B3A5'); g.addColorStop(1, '#CD907F');
+  x.fillStyle = g; x.fillRect(0, 0, taille, taille);
+  x.textAlign = 'center'; x.textBaseline = 'alphabetic';
+  x.fillStyle = '#6A443F'; x.font = '500 ' + Math.round(64 * k) + 'px Poppins, Arial, sans-serif';
+  var t = 'M A M · M A N · Z E N'; x.fillText(t, taille / 2, 318 * k);
+  x.fillStyle = '#3E362E'; x.font = Math.round(250 * k) + 'px Tinos, "Times New Roman", serif';
+  x.fillText('Entre', taille / 2, 590 * k);
+  x.fillStyle = '#6A443F'; x.font = 'italic ' + Math.round(250 * k) + 'px Tinos, "Times New Roman", serif';
+  x.fillText('Nous', taille / 2, 820 * k);
+  return c.toDataURL('image/png');
+}
+function poserIcones() {
+  [['apple-touch-icon', 180], ['icon', 192]].forEach(function (r) {
+    var l = document.createElement('link'); l.rel = r[0]; l.sizes = r[1] + 'x' + r[1]; l.href = icone(r[1]);
+    document.head.appendChild(l);
+  });
+}
+if (document.fonts && document.fonts.load) {
+  Promise.all([document.fonts.load('250px Tinos'), document.fonts.load('italic 250px Tinos'), document.fonts.load('500 64px Poppins')]).then(poserIcones, poserIcones);
+} else { poserIcones(); }
+var att = document.getElementById('attente');
+document.getElementById('app').addEventListener('load', function () { setTimeout(function () { att.style.opacity = '0'; setTimeout(function () { att.style.display = 'none'; }, 400); }, 600); });
+setTimeout(function () { document.getElementById('secours').style.display = 'block'; }, 12000);
+</script>
+</body>
+</html>
